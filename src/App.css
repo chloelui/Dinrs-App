@@ -98,6 +98,7 @@ a {
   margin: 0 0 40px;
   font-size: 40px;
   font-weight: 700;
+  color: var(--text)
 }
 .page-subtitle {
   margin: 0 0 28px;
@@ -119,6 +120,12 @@ a {
   font-size: 16px;
   border: 1px solid var(--border);
   border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text);
+}
+.search-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
 }
 .filter-pill {
   appearance: none;
@@ -143,6 +150,9 @@ a {
   background: var(--card-bg);
   border-radius: 14px;
   padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 .avatar {
   width: 79px;
@@ -161,6 +171,7 @@ a {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.2;
+  color: var(--text);
 }
 .student-meta {
   margin: 0 0 10px;
@@ -175,6 +186,7 @@ a {
 .tag-row {
   display: flex;
   gap: 8px;
+  margin-top: auto;
   margin-bottom: 12px;
   min-height: 36px;
 }
