@@ -64,6 +64,93 @@ function App() {
   }
 
   const search = searchTerm.trim().toLowerCase();
+
+  const filteredStudents = students.filter((s) => {
+    const matchesSearch = search === "" || s.name.toLowerCase().includes(search) || s.major.toLowerCase().includes(search);
+    const matchesHall = filters.diningHall === "" || s.halls.includes(filters.diningHall);
+    const matchesFood = filters.foodType === "" || s.foods.includes(filters.foodType);
+    const matchesYear = filters.year === "" || s.year === filters.year;
+    return matchesSearch && matchesHall && matchesFood && matchesYear;
+  });
+
+  const visibleStudents = filteredStudents.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredStudents.length;
+
+  return (
+    <div className="app">
+      <NavBar isLoggedIn={isLoggedIn} onToggleLogin={handleToggleLogin} />
+
+      <main className="page">
+        <h1 className="page-title">Discover students</h1>
+        <p className="page-subtitle">
+          {isLoggedIn ? `Find people who eat where you eat. You have ${connectedIds.length} connection${connectedIds.length === 1 ? "" : "s"}.` : "Find people who eat where you eat."}
+        </p>
+        <div className="filter-bar">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <select className="filter-pill" name="diningHall" value={filters.diningHall} onChange={handleFilterChange}>
+            <option value="">Dining Hall</option>
+            {diningHallOptions.map((hall) => (
+              <option key={hall} value={hall}>{hall}</option>
+            ))}
+          </select>
+
+          <select className="filter-pill" name="foodType" value={filters.foodType} onChange={handleFilterChange}>
+            <option value="">Food Type</option>
+            {foodOptions.map((food) => (
+              <option key={food} value={food}>{food}</option>
+            ))}
+          </select>
+
+          <select className="filter-pill" name="year" value={filters.year} onChange={handleFilterChange}>
+            <option value="">Year</option>
+            {yearOptions.map((y) => (
+              <option key={y} value={y}>{y}</option>
+            ))}
+          </select>
+        </div>
+
+        {visibleStudents.length === 0 ? (
+          <p className="empty-message">No students match those filters. Try clearing one.</p>
+        ) : (
+          <div className="card-grid">
+            {visibleStudents.map((student) => (
+              <StudentCard
+                key={student.id}
+                student={student}
+                isConnected={connectedIds.includes(student.id)}
+                onToggleConnect={handleToggleConnect}
+              />
+            ))}
+          </div>
+        )}
+
+        {hsaMore && (
+          <div className="load-more-wrap">
+            <button className="btn-outline" onClick={handleLoadMore}>Load more</button>
+          </div>
+        )}
+      </main>
+
+      <footer className="footer">
+        <div>
+          <div className="footer-logo">dinrs</div>
+          <p className="footer-tagline">Meet students who eat where you eat.</p>
+        </div>
+        <nav className="footer-links">
+          <a href="#">About</a>
+          <a href="#">Safety</a>
+          <a href="#">Contact</a>
+        </nav>
+        <p className="footer-copy">© 2026 dinrs. All rights reserved.</p>
+      </footer>
+    </div>
+  );
 }
 
 export default App
