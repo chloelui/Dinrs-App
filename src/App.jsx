@@ -41,7 +41,7 @@ function App() {
   }
 
   function handleSearchChange(event) {
-    setSearchItem(event.target.value);
+    setSearchTerm(event.target.value);
     setVisibleCount(PAGE_SIZE);
   }
 
@@ -66,7 +66,12 @@ function App() {
   const search = searchTerm.trim().toLowerCase();
 
   const filteredStudents = students.filter((s) => {
-    const matchesSearch = search === "" || s.name.toLowerCase().includes(search) || s.major.toLowerCase().includes(search);
+    const matchesSearch = 
+      search === "" || 
+      s.name.toLowerCase().includes(search) || 
+      s.major.toLowerCase().includes(search) ||
+      s.foods.some((food) => food.toLowerCase().includes(search)) ||
+      s.halls.some((hall) => hall.toLowerCase().includes(search));
     const matchesHall = filters.diningHall === "" || s.halls.includes(filters.diningHall);
     const matchesFood = filters.foodType === "" || s.foods.includes(filters.foodType);
     const matchesYear = filters.year === "" || s.year === filters.year;
@@ -130,7 +135,7 @@ function App() {
           </div>
         )}
 
-        {hsaMore && (
+        {hasMore && (
           <div className="load-more-wrap">
             <button className="btn-outline" onClick={handleLoadMore}>Load more</button>
           </div>

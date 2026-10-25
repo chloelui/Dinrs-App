@@ -71,6 +71,7 @@ a {
   font-size: 28px;
   font-weight: 700;
   color: var(--green);
+  justify-self: start;
 }
 .navbar-links {
   display: flex;
