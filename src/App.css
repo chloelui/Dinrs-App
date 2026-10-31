@@ -315,29 +315,32 @@ a.btn-outline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 .step-card {
   background: #fff;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.step-title {
+  margin: 8px 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 2.8em; /* room for 2 lines of title */
 }
 .step-number {
   font-size: 32px;
   font-weight: 700;
   color: var(--green);
 }
-.step-title {
-  margin: 8px 0 10px;
-  font-size: 15px;
-  font-weight: 600;
-}
 .step-text {
   margin: 0;
   font-size: 14px;
   color: var(--muted);
-  text-align: left;
+  text-align: center;
 }
 
 /* ---------- Featured students ---------- */
