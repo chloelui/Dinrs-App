@@ -248,6 +248,7 @@ a {
 .footer-links {
   display: flex;
   flex-direction: column;
+  justify-self: center;
   gap: 14px;
 }
 .footer-links a:hover {

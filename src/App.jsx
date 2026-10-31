@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import StudentCard from "./components/StudentCard";
+import Footer from "./components/Footer";
 
 const students = [
   { id: 1, name: "Alex Rivera", year: "Sophomore", major: "Biology", halls: ["Elder Hall", "Buen Día"], foods: ["Ramen", "Dumplings"] },
@@ -53,7 +54,7 @@ function App() {
 
   function handleToggleConnect(id) {
     if (connectedIds.includes(id)) {
-      setConnectedIds(connectedIds.filter((exstingId) => existingId !== id));
+      setConnectedIds(connectedIds.filter((existingId) => existingId !== id));
     } else {
       setConnectedIds([...connectedIds, id]);
     }
@@ -142,18 +143,7 @@ function App() {
         )}
       </main>
 
-      <footer className="footer">
-        <div>
-          <div className="footer-logo">dinrs</div>
-          <p className="footer-tagline">Meet students who eat where you eat.</p>
-        </div>
-        <nav className="footer-links">
-          <a href="#">About</a>
-          <a href="#">Safety</a>
-          <a href="#">Contact</a>
-        </nav>
-        <p className="footer-copy">© 2026 dinrs. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
