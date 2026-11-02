@@ -18,4 +18,4 @@ function FoodChipList({ foods, onRemove, children }) {
     );
 }
 
-export default FoodChipList
+export default FoodChipList;
