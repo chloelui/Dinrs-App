@@ -6,7 +6,7 @@ import { buildUserFormData } from "../api/users";
 import { DINING_HALLS } from "../data/diningHalls";
 import DiningHallCheckboxes from "../components/DiningHallCheckboxes";
 
-const EMTPY_VALUES = {
+const EMPTY_VALUES = {
   name: "",
   email: "",
   graduationYear: "",

@@ -1,5 +1,7 @@
 import { DINING_HALLS } from "../data/diningHalls";
 
+const COLUMNS = 3;
+
 function DiningHallCheckboxes({ selected, onChange }) {
   function handleToggle(hall) {
     if (selected.includes(hall)) {
@@ -9,8 +11,11 @@ function DiningHallCheckboxes({ selected, onChange }) {
     }
   }
 
+  // columns of 7, 7, and 5
+  const rows = Math.ceil(DINING_HALLS.length / COLUMNS);
+
   return (
-    <>
+    <div className="checkbox-grid" style={{ "--rows": rows }}>
       {DINING_HALLS.map((hall) => (
         <label key={hall} className="checkbox-row">
           <input
@@ -21,7 +26,7 @@ function DiningHallCheckboxes({ selected, onChange }) {
           {hall}
         </label>
       ))}
-    </>
+    </div>
   );
 }
 
